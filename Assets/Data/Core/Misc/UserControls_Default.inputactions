@@ -1,0 +1,34 @@
+{
+    "name": "UserControls_Default",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "ca6fd362-3751-40a2-928a-df7279f4f89a",
+            "actions": [
+                {
+                    "name": "LeftButton",
+                    "type": "Button",
+                    "id": "43b6059d-dc3d-4b84-9629-43145e1b728c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8602afb0-c856-4de2-92a7-6370fe008540",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
