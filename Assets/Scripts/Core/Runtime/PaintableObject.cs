@@ -8,5 +8,7 @@ namespace Core.Runtime
         private MeshRenderer _meshRenderer;
 
         public MeshRenderer MeshRenderer => _meshRenderer;
+
+        public GameObject GameObject => gameObject;
     }
 }

@@ -7,11 +7,15 @@ namespace Core.Runtime
     {
         [SerializeField]
         private UserInputHandler _userInputHandler;
+
+        [SerializeField]
+        private ObjectPainter _objectPainter;
         
         
         public override void InstallBindings()
         {
             Container.BindInstance(_userInputHandler).AsSingle();
+            Container.BindInstance(_objectPainter).AsSingle();
         }
     }
 }
