@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Core.Runtime
 {
-    public class PaintingLogic
+    public static class PaintingLogic
     {
-        public IEnumerable<Vector2> GetPointsOnLine(Vector2 p1, Vector2 p2)
+        public static IEnumerable<Vector2> GetPointsOnLine(Vector2 p1, Vector2 p2)
         {
             float distance = Vector2.Distance(p1, p2);
             int steps = Mathf.CeilToInt(distance);
@@ -16,7 +16,7 @@ namespace Core.Runtime
         }
         
         
-        public void DrawCircle(int centerX, int centerY, int radius, Texture2D texture, Color color)
+        public static void DrawCircle(int centerX, int centerY, int radius, Texture2D texture, Color color)
         {
             int sqrRadius = radius * radius;
             for (int x = -radius; x <= radius; x++)

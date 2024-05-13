@@ -12,8 +12,7 @@ namespace Core.Runtime
         private Color _brushColor = Color.red;
         
         private Vector2? _previousPosition;
-        private PaintingLogic _paintingLogic;
-        
+
         private UserInputHandler _userInputHandler;
 
 
@@ -24,25 +23,19 @@ namespace Core.Runtime
         }
 
 
-        private void Awake()
-        {
-            _paintingLogic = new PaintingLogic();
-        }
-
-
         public override void Paint(Vector2 uv, Texture2D texture)
         {
             Vector2 textUV = new Vector2(uv.x * texture.width, uv.y * texture.height);
 
             if (_previousPosition.HasValue)
             {
-                foreach (var pixelUV in _paintingLogic.GetPointsOnLine(_previousPosition.Value, textUV))
+                foreach (var pixelUV in PaintingLogic.GetPointsOnLine(_previousPosition.Value, textUV))
                 {
-                    _paintingLogic.DrawCircle((int)pixelUV.x, (int)pixelUV.y, _brushSize, texture, _brushColor);
+                    PaintingLogic.DrawCircle((int)pixelUV.x, (int)pixelUV.y, _brushSize, texture, _brushColor);
                 }
             }
 
-            _paintingLogic.DrawCircle((int)textUV.x, (int)textUV.y, _brushSize, texture, _brushColor);
+            PaintingLogic.DrawCircle((int)textUV.x, (int)textUV.y, _brushSize, texture, _brushColor);
 
             _previousPosition = textUV;
             texture.Apply();

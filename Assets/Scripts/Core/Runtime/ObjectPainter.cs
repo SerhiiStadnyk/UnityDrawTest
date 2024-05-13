@@ -30,8 +30,8 @@ namespace Core.Runtime
                 _activeBrush.Deselect();
             }
 
-            _activeBrush.Select();
             _activeBrush = brush;
+            _activeBrush.Select();
         }
 
 
