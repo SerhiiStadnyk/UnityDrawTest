@@ -10,12 +10,16 @@ namespace Core.Runtime
 
         [SerializeField]
         private ObjectPainter _objectPainter;
+
+        [SerializeField]
+        private TexturesSaveHandler _texturesSaveHandler;
         
         
         public override void InstallBindings()
         {
             Container.BindInstance(_userInputHandler).AsSingle();
             Container.BindInstance(_objectPainter).AsSingle();
+            Container.BindInstance(_texturesSaveHandler).AsSingle();
         }
     }
 }

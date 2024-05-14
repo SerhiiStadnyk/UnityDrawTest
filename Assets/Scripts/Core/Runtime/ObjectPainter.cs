@@ -15,6 +15,8 @@ namespace Core.Runtime
 
         private UserInputHandler _userInputHandler;
 
+        public Texture2D DecalTexture => _decalTexture;
+
 
         [Inject]
         public void Inject(UserInputHandler userInputHandler)
@@ -40,6 +42,16 @@ namespace Core.Runtime
             if (_paintable != null && _decalTexture != null)
             {
                 PaintingLogic.Fill(_decalTexture, new Color(0, 0, 0, 0));
+            }
+        }
+
+
+        public void SetTexture(Texture2D texture)
+        {
+            if (_paintable != null && _decalTexture != null)
+            {
+                _decalTexture = texture;
+                _paintable.MeshRenderer.material.SetTexture(_texturePropertyName, _decalTexture);
             }
         }
 
