@@ -36,5 +36,19 @@ namespace Core.Runtime
                 }
             }
         }
+
+
+        public static void Fill(Texture2D texture, Color color)
+        {
+            Color[] colors = new Color[texture.width * texture.height];
+            
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = color;
+            }
+            
+            texture.SetPixels(colors);
+            texture.Apply();
+        }
     }
 }

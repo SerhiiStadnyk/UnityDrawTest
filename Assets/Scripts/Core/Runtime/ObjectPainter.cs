@@ -35,6 +35,15 @@ namespace Core.Runtime
         }
 
 
+        public void ClearTexture()
+        {
+            if (_paintable != null && _decalTexture != null)
+            {
+                PaintingLogic.Fill(_decalTexture, new Color(0, 0, 0, 0));
+            }
+        }
+
+
         private void Start()
         {
             _mainCamera = Camera.main;

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b85608e7d0ed1554aaba1508f898ecff, type: 3}
-  m_Name: GlobalEvent_Color
+  m_Script: {fileID: 11500000, guid: 789f12a33f27de044ab0b576f22e9ad8, type: 3}
+  m_Name: GlobalEvent_Action_Clear
   m_EditorClassIdentifier: 
