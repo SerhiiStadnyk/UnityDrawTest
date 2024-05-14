@@ -3,11 +3,16 @@ using UnityEngine;
 
 namespace Core.Runtime
 {
-    
     [CreateAssetMenu(fileName = "GlobalEvent_Color", menuName = "Core/GlobalEvents/Color", order = 1)]
-    public class GlobalEventColor : ScriptableObject
+    public class GlobalEventColor : GlobalEventBase
     {
         private List<GlobalEventObserverColor> _observers = new List<GlobalEventObserverColor>();
+
+
+        public override void Initialize()
+        {
+            _observers = new List<GlobalEventObserverColor>();
+        }
 
 
         public void TriggerEvent(Color color)

@@ -9,9 +9,6 @@ namespace Core.Runtime
         [SerializeField]
         private PaintableObject _paintableObject;
 
-        [SerializeField]
-        private BrushBase _initBrush;
-
         private ObjectPainter _objectPainter;
 
 
@@ -25,7 +22,6 @@ namespace Core.Runtime
         private void Start()
         {
             _objectPainter.InitPaintableObject(_paintableObject);
-            _objectPainter.SetBrush(_initBrush);
         }
     }
 }

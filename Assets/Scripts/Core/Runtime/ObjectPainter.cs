@@ -76,7 +76,7 @@ namespace Core.Runtime
 
         private void Paint()
         {
-            if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
+            if (_activeBrush != null && Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
             {
                 if (hitInfo.transform.gameObject == _paintable.GameObject)
                 {
