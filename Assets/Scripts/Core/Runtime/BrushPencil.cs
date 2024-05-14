@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Core.Runtime
@@ -10,7 +11,13 @@ namespace Core.Runtime
         
         [SerializeField] 
         private Color _brushColor = Color.red;
+
+        [SerializeField]
+        private UnityEvent<float> _sizeChangedEventFloat;
         
+        [SerializeField]
+        private UnityEvent<string> _sizeChangedEventString;
+
         private Vector2? _previousPosition;
 
         private UserInputHandler _userInputHandler;
@@ -20,6 +27,28 @@ namespace Core.Runtime
         public void Inject(UserInputHandler userInputHandler)
         {
             _userInputHandler = userInputHandler;
+        }
+
+
+        public void SetSize(float size)
+        {
+            _brushSize = (int)size;
+            _sizeChangedEventFloat?.Invoke(_brushSize);
+            _sizeChangedEventString?.Invoke(_brushSize.ToString());
+        }
+        
+        
+        public void SetSize(string size)
+        {
+            int.TryParse(size, out _brushSize);
+            _sizeChangedEventFloat?.Invoke(_brushSize);
+            _sizeChangedEventString?.Invoke(_brushSize.ToString());
+        }
+
+
+        public void SetColor(Color color)
+        {
+            _brushColor = color;
         }
 
 
