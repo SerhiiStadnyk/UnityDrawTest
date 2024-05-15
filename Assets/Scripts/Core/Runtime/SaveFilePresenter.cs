@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Core.Runtime
 {
@@ -8,7 +9,16 @@ namespace Core.Runtime
     {
         [SerializeField]
         private TMP_Text _saveFileNameText;
+
+        [SerializeField]
+        private Image _backgroundImage;
+
+        [SerializeField]
+        private Color _normalColor;
         
+        [SerializeField]
+        private Color _selectedColor;
+
         private string _saveFileName;
         private Action<SaveFilePresenter> _callback;
 
@@ -27,6 +37,12 @@ namespace Core.Runtime
         public void Clicked()
         {
             _callback?.Invoke(this);
+        }
+
+
+        public void MarkAsSelected(bool value)
+        {
+            _backgroundImage.color = value ? _selectedColor : _normalColor;
         }
     }
 }

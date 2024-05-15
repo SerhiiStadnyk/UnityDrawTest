@@ -69,7 +69,7 @@ namespace Core.Runtime
             foreach (string saveFileName in _texturesSaveHandler.GetSaveFilesNames())
             {
                 SaveFilePresenter instance = Instantiate(_saveFilePresenterPrefab, _container);
-                instance.Initialize(saveFileName, (presenter) => _selectedPresenter = presenter);
+                instance.Initialize(saveFileName, SelectPresenter);
                 _presenters.Add(instance);
             }
         }
@@ -82,6 +82,18 @@ namespace Core.Runtime
                 Destroy(_presenters[index].gameObject);
             }
             _presenters.Clear();
+        }
+
+
+        private void SelectPresenter(SaveFilePresenter presenter)
+        {
+            if (_selectedPresenter != null)
+            {
+                _selectedPresenter.MarkAsSelected(false);
+            }
+
+            _selectedPresenter = presenter;
+            _selectedPresenter.MarkAsSelected(true);
         }
     }
 }

@@ -72,7 +72,7 @@ namespace Core.Runtime
             foreach (string saveFileName in _texturesSaveHandler.GetSaveFilesNames())
             {
                 SaveFilePresenter instance = Instantiate(_saveFilePresenterPrefab, _container);
-                instance.Initialize(saveFileName, (presenter) => _selectedPresenter = presenter);
+                instance.Initialize(saveFileName, SelectPresenter);
                 _presenters.Add(instance);
             }
         }
@@ -92,7 +92,7 @@ namespace Core.Runtime
         {
             bool result = true;
 
-            if (_inputField.text == null)
+            if (string.IsNullOrEmpty(_inputField.text))
             {
                 result = false;
             }
@@ -109,6 +109,18 @@ namespace Core.Runtime
             }
 
             return result;
+        }
+        
+        
+        private void SelectPresenter(SaveFilePresenter presenter)
+        {
+            if (_selectedPresenter != null)
+            {
+                _selectedPresenter.MarkAsSelected(false);
+            }
+
+            _selectedPresenter = presenter;
+            _selectedPresenter.MarkAsSelected(true);
         }
     }
 }

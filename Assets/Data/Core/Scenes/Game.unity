@@ -373,7 +373,6 @@ GameObject:
   m_Component:
   - component: {fileID: 14429674}
   - component: {fileID: 14429679}
-  - component: {fileID: 14429677}
   - component: {fileID: 14429676}
   - component: {fileID: 14429675}
   m_Layer: 5
@@ -443,18 +442,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &14429677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14429673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3827478098be60143b2cfa162cb559b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &14429679
 CanvasRenderer:
   m_ObjectHideFlags: 0
