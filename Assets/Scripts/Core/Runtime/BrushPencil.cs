@@ -41,8 +41,7 @@ namespace Core.Runtime
         public void SetSize(string size)
         {
             int.TryParse(size, out _brushSize);
-            _sizeChangedEventFloat?.Invoke(_brushSize);
-            _sizeChangedEventString?.Invoke(_brushSize.ToString());
+            SetSize(_brushSize);
         }
 
 
@@ -58,7 +57,7 @@ namespace Core.Runtime
         
             if (_previousPosition.HasValue)
             {
-                foreach (var pixelUV in PaintingLogic.GetPointsOnLine(_previousPosition.Value, textUV, texture.width))
+                foreach (var pixelUV in PaintingLogic.GetPointsOnLine(_previousPosition.Value, textUV, _brushSize))
                 {
                     PaintingLogic.DrawCircle((int)pixelUV.x, (int)pixelUV.y, _brushSize, texture, _brushColor);
                 }
@@ -67,7 +66,6 @@ namespace Core.Runtime
             PaintingLogic.DrawCircle((int)textUV.x, (int)textUV.y, _brushSize, texture, _brushColor);
             
             _previousPosition = textUV;
-            Debug.LogWarning(_previousPosition);
             texture.Apply();
         }
 
