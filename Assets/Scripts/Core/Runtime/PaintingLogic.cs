@@ -5,13 +5,31 @@ namespace Core.Runtime
 {
     public static class PaintingLogic
     {
-        public static IEnumerable<Vector2> GetPointsOnLine(Vector2 p1, Vector2 p2)
+        public static IEnumerable<Vector2> GetPointsOnLine(Vector2 p1, Vector2 p2, int stepsOffset, int maxDistance)
+        {
+            float distance = Vector2.Distance(p1, p2);
+            if (distance <= maxDistance)
+            {
+                int steps = Mathf.CeilToInt(distance / stepsOffset);
+                for (int i = 0; i <= steps; i++)
+                {
+                    yield return Vector2.Lerp(p1, p2, (float)i / steps);
+                }
+            }
+        }
+        
+        
+        public static IEnumerable<Vector2> GetPointsOnLine(Vector2 p1, Vector2 p2, int textureWidth)
         {
             float distance = Vector2.Distance(p1, p2);
             int steps = Mathf.CeilToInt(distance);
             for (int i = 0; i <= steps; i++)
             {
-                yield return Vector2.Lerp(p1, p2, i / distance);
+                float t = i / (float)steps;
+                Vector2 interpolatedUV = Vector2.Lerp(p1, p2, t);
+                // Wrap UV coordinates around texture edges
+                interpolatedUV.x = Mathf.Repeat(interpolatedUV.x, textureWidth);
+                yield return interpolatedUV;
             }
         }
         

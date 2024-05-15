@@ -104,6 +104,10 @@ namespace Core.Runtime
                     _activeBrush.Paint(hitInfo.textureCoord, _decalTexture);
                 }
             }
+            else if (_activeBrush != null)
+            {
+                _activeBrush.StopPainting();
+            }
         }
     }
 }

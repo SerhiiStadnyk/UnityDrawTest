@@ -55,19 +55,26 @@ namespace Core.Runtime
         public override void Paint(Vector2 uv, Texture2D texture)
         {
             Vector2 textUV = new Vector2(uv.x * texture.width, uv.y * texture.height);
-
+        
             if (_previousPosition.HasValue)
             {
-                foreach (var pixelUV in PaintingLogic.GetPointsOnLine(_previousPosition.Value, textUV))
+                foreach (var pixelUV in PaintingLogic.GetPointsOnLine(_previousPosition.Value, textUV, texture.width))
                 {
                     PaintingLogic.DrawCircle((int)pixelUV.x, (int)pixelUV.y, _brushSize, texture, _brushColor);
                 }
             }
-
+        
             PaintingLogic.DrawCircle((int)textUV.x, (int)textUV.y, _brushSize, texture, _brushColor);
-
+            
             _previousPosition = textUV;
+            Debug.LogWarning(_previousPosition);
             texture.Apply();
+        }
+
+
+        public override void StopPainting()
+        {
+            _previousPosition = null;
         }
 
 
@@ -82,12 +89,6 @@ namespace Core.Runtime
         {
             base.Deselect();
             _userInputHandler.OnLeftMouseButtonUp -= StopPainting;
-        }
-        
-        
-        private void StopPainting()
-        {
-            _previousPosition = null;
         }
     }
 }

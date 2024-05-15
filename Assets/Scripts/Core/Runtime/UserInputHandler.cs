@@ -12,25 +12,34 @@ namespace Core.Runtime
         
         private const string MOUSE = "Mouse"; 
         private const string LEFT_BUTTON = "LeftButton";
+        private const string RIGHT_BUTTON = "RightButton";
 
         private InputAction _leftMouseAction;
+        
+        private InputAction _rightMouseAction;
 
         private Coroutine _leftMousePressedCoroutine;
+        
+        private Coroutine _rightMousePressedCoroutine;
 
         public event Action OnLeftMouseButton;
         public event Action OnLeftMouseButtonDown;
         public event Action OnLeftMouseButtonUp;
+        
+        public event Action OnRightMouseButton;
 
 
         protected void Awake()
         {
             _leftMouseAction = _playerControls.FindActionMap(MOUSE).FindAction(LEFT_BUTTON);
+            _rightMouseAction = _playerControls.FindActionMap(MOUSE).FindAction(RIGHT_BUTTON);
         }
 
 
         private void OnEnable()
         {
             _leftMouseAction.Enable();
+            _rightMouseAction.Enable();
             RegisterInputActions();
         }
 
@@ -38,6 +47,7 @@ namespace Core.Runtime
         private void OnDisable()
         {
             _leftMouseAction.Disable();
+            _rightMouseAction.Disable();
             UnregisterInputActions();
         }
 
@@ -46,6 +56,8 @@ namespace Core.Runtime
         {
             _leftMouseAction.performed += LeftMouseDown;
             _leftMouseAction.canceled += LeftMouseUp;
+            
+            _rightMouseAction.performed += RightMouseDown;
         }
 
 
@@ -53,6 +65,8 @@ namespace Core.Runtime
         {
             _leftMouseAction.performed -= LeftMouseDown;
             _leftMouseAction.canceled -= LeftMouseUp;
+            
+            _rightMouseAction.performed -= RightMouseDown;
         }
         
         
@@ -78,6 +92,24 @@ namespace Core.Runtime
         private void LeftMouseUp(InputAction.CallbackContext context)
         {
             OnLeftMouseButtonUp?.Invoke();
+        }
+        
+        
+        private void RightMouseDown(InputAction.CallbackContext context)
+        {
+            _rightMousePressedCoroutine ??= StartCoroutine(RightMousePressedRoutine());
+        }
+        
+        
+        private IEnumerator RightMousePressedRoutine()
+        {
+            while (_rightMouseAction.IsPressed())
+            {
+                OnRightMouseButton?.Invoke();
+                yield return null;
+            }
+
+            _rightMousePressedCoroutine = null;
         }
     }
 }
