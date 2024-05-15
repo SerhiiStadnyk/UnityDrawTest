@@ -6,25 +6,25 @@ namespace Core.Runtime
     [CreateAssetMenu(fileName = "GlobalEvent_Color", menuName = "Core/GlobalEvents/Color", order = 1)]
     public class GlobalEventColor : GlobalEventBase
     {
-        private List<GlobalEventObserverColor> _observers = new List<GlobalEventObserverColor>();
+        private List<GlobalObserverColor> _observers = new List<GlobalObserverColor>();
 
 
         public override void Initialize()
         {
-            _observers = new List<GlobalEventObserverColor>();
+            _observers = new List<GlobalObserverColor>();
         }
 
 
         public void TriggerEvent(Color color)
         {
-            foreach (GlobalEventObserverColor observer in _observers)
+            foreach (GlobalObserverColor observer in _observers)
             {
                 observer.TriggerObserver(color);
             }
         }
 
 
-        public void SubscribeObserver(GlobalEventObserverColor observer)
+        public void SubscribeObserver(GlobalObserverColor observer)
         {
             if (!_observers.Contains(observer))
             {
@@ -33,7 +33,7 @@ namespace Core.Runtime
         }
 
 
-        public void UnsubscribeObserver(GlobalEventObserverColor observer)
+        public void UnsubscribeObserver(GlobalObserverColor observer)
         {
             if (_observers.Contains(observer))
             {

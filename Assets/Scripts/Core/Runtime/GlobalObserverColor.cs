@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Core.Runtime
 {
-    public class GlobalEventObserverColor : MonoBehaviour
+    public class GlobalObserverColor : MonoBehaviour
     {
         [SerializeField]
         private GlobalEventColor _eventColor;
